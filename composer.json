@@ -1,0 +1,54 @@
+{
+    "name": "reecem/laravel-settings",
+    "type": "package",
+    "description": "YASP A settings package that uses a property bag and caching",
+    "require": {
+        "illuminate/support": "^5.6",
+        "illuminate/filesystem": "^5.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "orchestra/testbench": "^3.5"
+    },
+    "keywords": [
+        "laravel",
+        "settings",
+        "key-value",
+        "property-bag"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ReeceM",
+            "email": "reecestevenmay@gmail.com",
+            "homepage": "https://githib.com/reecem"
+        }
+    ],
+    "homepage": "https://github.com/reecem/laravel-settings",
+    "autoload": {
+        "psr-4": {
+            "ReeceM\\Settings\\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ReeceM\\Settings\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-clover coverage"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ReeceM\\Settings\\SettingsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -46,7 +46,10 @@
         "laravel": {
             "providers": [
                 "ReeceM\\Settings\\SettingsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Settings": "ReeceM\\Settings\\Facade"
+            }
         }
     },
     "minimum-stability": "dev",

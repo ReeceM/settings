@@ -2,9 +2,9 @@
 
 namespace ReeceM\Settings;
 
-use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Facade as BaseFacade;
 
-class SettingFacade extends Facade {
+class Facade extends BaseFacade {
     /**
      * Get the registered name of the component.
      *

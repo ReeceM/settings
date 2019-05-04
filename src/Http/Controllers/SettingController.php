@@ -54,7 +54,7 @@ class SettingController extends Controller
     public function create()
     {
         //
-        abort_unless(Gate::check('chex.admin', request()->user()), 403);
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         return view('settings::create');
     }
 
@@ -86,7 +86,7 @@ class SettingController extends Controller
     public function show(Setting $setting)
     {
         //
-        abort_unless(Gate::check('chex.admin', request()->user()), 403);
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         return view('settings::edit', compact('setting'));
     }
 
@@ -99,7 +99,7 @@ class SettingController extends Controller
     public function edit(Setting $setting)
     {
         //
-        abort_unless(Gate::check('chex.admin', request()->user()), 403);
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         return view('settings::edit', compact('setting'));
     }
 
@@ -131,7 +131,7 @@ class SettingController extends Controller
     public function destroy(Setting $setting)
     {
         //
-        abort_unless(Gate::check('chex.admin', request()->user()), 403);
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         if($setting->delete())
         {
             setting()->cache();

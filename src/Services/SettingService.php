@@ -31,7 +31,7 @@ class SettingService
      */
     protected $_configs;
 
-    public static $configName = 'chex_settings.php';
+    public static $configName = 'settings.php';
 
     public function __construct(Setting $setting = null, Filesystem $filesystem = null)
     {

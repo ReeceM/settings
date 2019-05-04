@@ -2,7 +2,7 @@
 
     return [
         /***********************************************
-        |       CHEX ADMIN USERS
+        |       settings ADMIN USERS
         |
         */
             'admins' => env('APP_ADMINS', ''),

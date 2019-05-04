@@ -15,7 +15,7 @@ class SettingsRequest extends FormRequest
      */
     public function authorize()
     {
-        abort_unless(Gate::check('chex.admin', request()->user()), 403);
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         return true;
     }
 

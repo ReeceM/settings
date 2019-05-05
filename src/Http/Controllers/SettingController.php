@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace ReeceM\Settings\Http\Controllers;
 
 use ReeceM\Settings\Setting;
-use App\Http\Requests\SettingsRequest;
+use ReeceM\Settings\Http\Requests\SettingsRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Cache;
 
@@ -27,8 +27,7 @@ class SettingController extends Controller
     public function refresh()
     {
         if(Cache::get('refresh:settings:cache', false)) {
-            session()->flash('settings:flash:state', 'is-warning');
-            session()->flash('settings:flash:message', __('Refresh Later Please'));
+            session()->flash('settings.flash.warning', __('Refresh Later Please'));
             return redirect()->route('settings::index');
         }
         try{
@@ -36,11 +35,9 @@ class SettingController extends Controller
             Cache::put('refresh:settings:cache', true , now()->addSeconds(600));
             setting()->cache();
             
-            session()->flash('settings:flash:state', 'is-success');
-            session()->flash('settings:flash:message', __('Cache Refreshed okay'));
+            session()->flash('settings.flash.success', __('Cache Refreshed okay'));
         } catch(\Exception $e) {
-            session()->flash('settings:flash:state', 'is-danger');
-            session()->flash('settings:flash:message', __('Unable to Refresh The Cache'));
+            session()->flash('settings.flash.danger', __('Unable to Refresh The Cache'));
         }
 
         return redirect()->route('settings::index');
@@ -70,8 +67,7 @@ class SettingController extends Controller
         $result = setting()->create($request->toArray());
         
         if($result) {
-            session()->flash('settings:flash:state', 'is-success');
-            session()->flash('settings:flash:message', __('Setting :key Created Successfully', $request->all()));
+            session()->flash('settings.flash.success', __('Setting :key Created Successfully', $request->all()));
 
             return redirect()->route('settings::index');
         }
@@ -118,7 +114,7 @@ class SettingController extends Controller
             setting()->cache();
             return view('settings::edit', compact('setting'));
         }
-        session()->flash('submit_error', 'Unable To Ubdate Setting');
+        session()->flash('settings.flash.danger', 'Unable To Ubdate Setting');
         return view('settings::edit', compact('setting'));
     }
 

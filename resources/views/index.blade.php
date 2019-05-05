@@ -86,11 +86,6 @@
         </div>
     </section>
 @endsection
-@push('pre-vue')
-<link rel="stylesheet" href="{{ asset('css/prisim.css') }}">
-<script src="{{ asset('/js/prisim.js') }}"></script>
-
-@endpush
 @push('scripts')
     <script>
         function deleteSetting(_setting) {
@@ -117,4 +112,9 @@
             });
         }
     </script>
+@endpush
+@push('pre-vue')
+<link rel="stylesheet" href="{{ asset('css/prisim.css') }}">
+<script src="{{ asset('/js/prisim.js') }}"></script>
+
 @endpush

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace ReeceM\Settings;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
+use ReeceM\Settings\Console\SettingsInstall;
 
 class SettingsServiceProvider extends ServiceProvider
 {
@@ -25,14 +27,17 @@ class SettingsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadRoutesFrom(__DIR__.'/routes.php');
-
-        $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/settings'),
-        ], 'public');
+        /**
+         * Register all of the applications
+         */
+        $this->registerCommands();
+        $this->registerConfig();
+        $this->loadRoutes();
+        $this->handlePublishing();
+        $this->registerViews();
 
         // load the settings Class
-        $this->app->singleton('reecem.settings', function(){
+        $this->app->singleton('reecem.settings', function () {
             return new \ReeceM\Settings\Services\SettingService();
         });
     }
@@ -58,24 +63,80 @@ class SettingsServiceProvider extends ServiceProvider
      */
     protected function registerViews()
     {
-        $this->loadViewsFrom(__DIR__.'../resources/views', 'settings');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'settings');
 
-        $this->publishes([
-            __DIR__.'/../resources/views' => resource_path('views/vendor/settings'),
-        ], 'views');
+        // $this->publishes([
+        //     __DIR__ . '/../resources/views' => resource_path('views/vendor/settings'),
+        // ], 'settings_views');
     }
 
+    /**
+     * Registers the applications config file and/or exports it
+     */
     protected function registerConfig()
     {
-        $this->publishes([
-            __DIR__.'/../config/setting.php' => config_path('setting.php')
-        ], 'config');
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/setting.php',
+            'setting'
+        );
+
+        // $this->publishes([
+        //     __DIR__ . '/../config/setting.php' => config_path('setting.php')
+        // ], 'settings_config');
     }
 
-    public function registerMigration()
+    /**
+     * Load the routes for the settings
+     */
+    protected function loadRoutes()
     {
-        $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations')
-        ], 'migrations');
+
+        $routeConfig = [
+            'namespace'     => '\ReeceM\Http\Settings\Controllers',
+            'middleware'    => ['can:settings.admin', config('settings.middleware')],
+            'prefix'        => 'settings'
+        ];
+
+        Route::group($routeConfig, function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        });
+    }
+
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                SettingsInstall::class,
+                // other commands for cleaning and such ??
+            ]);
+        }
+    }
+
+    /**
+     * Register the package's publishable resources.
+     *
+     * @return void
+     */
+    private function handlePublishing()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../public' => public_path('vendor/settings'),
+            ], 'settings_assets');
+
+            $this->publishes([
+                __DIR__ . '/../config/setting.php' => config_path('setting.php'),
+            ], 'settings_config');
+
+            $this->publishes([
+                __DIR__ . '/../migrations/' => database_path('migrations')
+            ], 'settings_migrations');
+
+            // $this->publishes([
+            //     __DIR__ . '/../stubs/providers/SettingsServiceProvider.stub' => app_path(
+            //         'Providers/SettingsServiceProvider.php'
+            //     ),
+            // ], 'settings_provider');
+        }
     }
 }

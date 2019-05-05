@@ -5,10 +5,6 @@
 <script src="https://unpkg.com/vue-prism-editor"></script>
 <!-- vue-prism-editor CSS -->
 <link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/VuePrismEditor.css">
-<link rel="stylesheet" href="{{ asset('css/prisim.css') }}">
-<script src="{{ asset('/js/prisim.js') }}"></script>
-
-
 
 @endpush
 

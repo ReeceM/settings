@@ -54,7 +54,7 @@
                                     <td>
                                         <div class="field is-grouped is-grouped-centered">
                                             <p class="control">
-                                                <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->key) }}">View</a>
+                                                <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->id) }}">View</a>
                                             </p>
                                             <p class="control">
                                                 <button class="md-button is-danger is-small" ondblclick="deleteSetting({{$setting}})">Delete</button>

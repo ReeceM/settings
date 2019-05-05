@@ -9,14 +9,14 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title')</title>
-        <link rel="stylesheet" href="{{ asset('css/prisim.css', 'vendor/settings') }}">
-        <script src="{{ asset('/js/prisim.js') }}"></script>
+        <link rel="stylesheet" href="{{ mix('css/prisim.css', 'vendor/settings') }}">
+        <script src="{{ mix('js/prisim.js', 'vendor/settings') }}"></script>
         <!-- Styles -->
         <link href="{{ mix('css/app.css', 'vendor/settings') }}" rel="stylesheet">
     </head>
     <body>
         @stack('pre-vue')
-        <div id="app">
+        <div id="app" class="container">
             @yield('content')
         </div>
         <!-- Scripts -->

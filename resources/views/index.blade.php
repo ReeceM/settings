@@ -1,4 +1,4 @@
-@extends('system.layouts.app') 
+@extends('settings::layouts.app') 
 
 @section('title', __(config('app.name') . ' < System Settings '))
 
@@ -7,16 +7,13 @@
         <div class="container is-fluid">
             <div class="columns is-centered">
                 <div class="column box" style="overflow-x: scroll">
-                    {{-- Notification flash area for settigns --}}
-                    @include('settings::partials.flash')
-                    {{-- end notification falsh area for settings --}}
                     <nav class="level is-mobile">
                         <div class="level-left">
                             <div class="level-item">
-                                <a href="{{ route('system.settings.create') }}" class="md-button is-info is-small">New Setting</a>
+                                <a href="{{ route('settings.create') }}" class="md-button is-info is-small">New Setting</a>
                             </div>
                             <div class="level-item">
-                                <a href="{{ route('system.settings.refresh') }}" class="md-button is-link is-small">
+                                <a href="{{ route('settings.refresh') }}" class="md-button is-link is-small">
                                     <b-icon size="is-small" icon="refresh"></b-icon>
                                 </a>
                             </div>
@@ -57,7 +54,7 @@
                                     <td>
                                         <div class="field is-grouped is-grouped-centered">
                                             <p class="control">
-                                                <a class="md-button is-info is-small" href="{{ route('system.settings.show', $setting->id) }}">View</a>
+                                                <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->key) }}">View</a>
                                             </p>
                                             <p class="control">
                                                 <button class="md-button is-danger is-small" ondblclick="deleteSetting({{$setting}})">Delete</button>

@@ -1,4 +1,4 @@
-@extends('system.layouts.app') 
+@extends('settings::layouts.app') 
 @section('title', __(config('app.name') . ' < Create Settings'))
 @push('pre-vue')
 <!-- vue-prism-editor JavaScript -->
@@ -18,13 +18,10 @@
         <div class="container is-fluid">
             <div class="columns is-centered">
                 <div class="column box" style="overflow-x: scroll">
-                    {{-- Notification flash area for settigns --}}
-                    @include('settings::partials.flash')
-                    {{-- end notification falsh area for settings --}}
                     <nav class="level is-mobile">
                         <div class="level-left">
                             <div class="level-item">
-                                <a href="{{ route('system.settings.index') }}" class="md-button is-info">Back</a>
+                                <a href="{{ route('settings.index') }}" class="md-button is-info">Back</a>
                             </div>
                         </div>
                         <div class="level-right">
@@ -36,7 +33,7 @@
                     <hr>
                     <div class="columns is-centered">
                         <div class="column is-7">
-                            <form action="{{ route('system.settings.update', $setting->id) }}" method="post">
+                            <form action="{{ route('settings.update', $setting->id) }}" method="post">
                                 @csrf
                                 @method('PATCH')
                                 {{-- Key setting value --}}
@@ -110,7 +107,7 @@
                                             <div class="field is-grouped">
                                                 <p class="control">
 
-                                                    <a href="{{ route('system.settings.index') }}" class="md-button">Cancel</a>
+                                                    <a href="{{ route('settings.index') }}" class="md-button">Cancel</a>
                                                 </p>
                                                 <p class="control">
                                                     <button class="md-button is-primary">Save</button>
@@ -143,11 +140,11 @@
             .then((willDelete) => {
                 if (willDelete) {
                     // delete the setting that is now been confirmed
-                    axios.delete('/system/settings/' + _setting.id).then(response => {
+                    axios.delete('/settings/' + _setting.id).then(response => {
                         if(response.status == 200) {
                             swal(`Poof! Your Setting\n ${_setting.key} \n has been deleted!`, { icon: "success" }).$setting
                             .then(r => {
-                                location.href = "{{ route('system.settings.index') }}"
+                                location.href = "{{ route('settings.index') }}"
                             });
                         }
                     })

@@ -13,12 +13,14 @@ class CreateSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('setting.db.table'), function (Blueprint $table) {
+        Schema::create(config('setting.storage.table'), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('key')->unique();
+            $table->string('key')->unique()->default('base');
             $table->text('value');
             $table->string('type')->default('STRING');
             $table->timestamps();
+            
+            $table->index('key');
         });
     }
 

@@ -15,4 +15,6 @@ mix.setPublicPath('public')
 
 mix.js('resources/js/app.js', 'js')
     .sass('resources/sass/app.scss', 'css')
+    .copy('resources/sass/prisim.css', 'public/css')
+    .copy('resources/js/prisim.js', 'public/js')
     .version();

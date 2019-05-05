@@ -28,7 +28,7 @@ class SettingController extends Controller
     {
         if(Cache::get('refresh:settings:cache', false)) {
             session()->flash('settings.flash.warning', __('Refresh Later Please'));
-            return redirect()->route('settings::index');
+            return redirect()->route('settings.index');
         }
         try{
             // refresh 
@@ -40,7 +40,7 @@ class SettingController extends Controller
             session()->flash('settings.flash.danger', __('Unable to Refresh The Cache'));
         }
 
-        return redirect()->route('settings::index');
+        return redirect()->route('settings.index');
     }
 
     /**
@@ -69,7 +69,7 @@ class SettingController extends Controller
         if($result) {
             session()->flash('settings.flash.success', __('Setting :key Created Successfully', $request->all()));
 
-            return redirect()->route('settings::index');
+            return redirect()->route('settings.index');
         }
     }
 

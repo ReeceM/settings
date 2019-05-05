@@ -72,6 +72,7 @@ class SettingService
         $this->files->put(
             $configPath, '<?php return '.var_export($this->settings, true).';'.PHP_EOL
         );
+        return true;
     }
     /**
      * Reads the settings file into memory
@@ -81,8 +82,12 @@ class SettingService
         try {
             $this->settings = $this->files->getRequire(base_path('bootstrap/cache/' . static::$configName));
         } catch (\Exception $e) {
-            Log::critical('Failed to load system settings with error: ' . $e);
-            throw $e;
+            
+            if(! $this->cache()) {
+                Log::critical('Failed to load system settings with error: ' . $e);
+                session()->flash('setting.flash.danger', 'Failed to load system settings file from storage');
+            }
+            // throw $e;
         }
     }
     /**

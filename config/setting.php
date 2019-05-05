@@ -20,7 +20,7 @@ return [
     |
     */
     'middleware' => [
-        'web', 'auth'
+        'web', 'auth', 'can:settings.admin'
     ],
     /*
     |  The setting for the path of the settings routes

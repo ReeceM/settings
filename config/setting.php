@@ -1,14 +1,30 @@
-<?php 
+<?php
 
-    return [
-        /***********************************************
-        |       settings ADMIN USERS
-        |
-        */
-            'admins' => env('APP_ADMINS', ''),
-        
-        /**
-         * This is for the logging of routes visited by a user by means of middleware
-         */
-        'log'           => false
-    ];
+return [
+    /***********************************************
+    |       settings ADMIN USERS
+    |   Deny all users until they are actually setup
+     */
+    'admins' => env('SETTING_ADMINS', ''),
+
+    /*
+    |   storage settings for now only has the db table name
+    |   
+    */
+    'storage' => [
+        'table' => 'app_settings'
+    ],
+
+    /* 
+    |   Applications middleware for the settings channels
+    |
+    */
+    'middleware' => [
+        'web', 'auth'
+    ],
+    /*
+    |  The setting for the path of the settings routes
+    |   you can change this, no forward slashes.
+    */
+    'path' => 'system'
+];

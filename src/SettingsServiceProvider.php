@@ -90,11 +90,10 @@ class SettingsServiceProvider extends ServiceProvider
      */
     protected function loadRoutes()
     {
-
         $routeConfig = [
-            'namespace'     => '\ReeceM\Http\Settings\Controllers',
-            'middleware'    => ['can:settings.admin', config('settings.middleware')],
-            'prefix'        => 'settings'
+            'namespace'     => '\ReeceM\Settings\Http\Controllers',
+            'middleware'    => ['can:settings.admin', config('setting.middleware')],
+            'prefix'        => config('setting.path')
         ];
 
         Route::group($routeConfig, function () {

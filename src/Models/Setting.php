@@ -17,6 +17,12 @@ class Setting extends Model
         'BOOL'      => 'transformBool'
     ];
     
+    public function __construct(array $attributes = [])
+    {
+        $this->table = config('setting.storage.table');
+        parent::__construct($attributes);
+    }
+
     public function transformString($value = null) : string
     {
         if (is_null($value)) return '';

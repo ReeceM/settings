@@ -3,9 +3,11 @@
 namespace ReeceM\Settings\Services;
 
 use ReeceM\Settings\Setting;
-use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
+use ReeceM\Settings\Mapper;
 
 /**
  * Class SettingsService
@@ -23,20 +25,42 @@ class SettingService
      */
     protected $settings;
 
-    protected $files;
-
     /**
      * Filesystem reader
      * @var 
      */
+    protected $storage;
+
+    /**
+     * Mapper manager class
+     */
+    public $mapper;
+
     protected $_configs;
 
     public static $configName = 'settings.php';
+    
+    public static $defaultStorageMethod = 'serialize';
 
-    public function __construct(Setting $setting = null, Filesystem $filesystem = null)
+    /**
+     * transformation for setting types
+     */
+    public static $types = [];
+
+    public function __construct($mapper = null, $storage = null)
     {
-        $this->model = $setting ?: new Setting();
-        $this->files = $filesystem ?: new Filesystem();
+        $this->model    = new Setting();
+        $this->mapper   = $mapper ?: new Mapper();
+
+        $disk = config('setting.storage.disk');        
+        $this->path     = 'cache/' . static::$configName;
+        
+        if ($disk === 's3') {
+            $this->path = config('services.settings.disk.dir') . '/' . static::$configName;
+        }
+        
+        $this->storage  = $storage ?: Storage::disk($disk);
+
         $this->load();
     }
 
@@ -64,15 +88,9 @@ class SettingService
      * Caches the settings to storage
      */
     public function cache()
-    {
-        $configPath = base_path('bootstrap/cache/' . static::$configName);
-        
+    {        
         $this->settings = $this->getFresh();
-        
-        $this->files->put(
-            $configPath, '<?php return '.var_export($this->settings, true).';'.PHP_EOL
-        );
-        return true;
+        return $this->pack($this->settings);
     }
     /**
      * Reads the settings file into memory
@@ -80,7 +98,13 @@ class SettingService
     public function load()
     {
         try {
-            $this->settings = $this->files->getRequire(base_path('bootstrap/cache/' . static::$configName));
+            $this->settings = $this->unPack();
+
+        } catch (FileNotFoundException $e) {
+            $this->cache();
+            
+            $this->settings = $this->unPack();
+
         } catch (\Exception $e) {
             
             if(! $this->cache()) {
@@ -89,6 +113,8 @@ class SettingService
             }
             // throw $e;
         }
+        
+        return $this->settings;
     }
     /**
      * Create a new entry in the setting models Entry
@@ -126,23 +152,31 @@ class SettingService
             'value' => $data['value'],
             'type'  => $data['type']
         ]);
+
         $this->cache();
         return $this;
     }
+    /**
+     * destroys a setting from the ORM and cache
+     */
+    // public function forget($key = null) 
+    // {
+    //     $this->model->where('key', $key)->delete();
+    //     Arr::forget($this->settings, $key);
+    //     return $this->cache();
+    // }
     /**
      * convert the settings from database to array
      */
     public function getFresh()
     {
+        
         $values = $this->model->all()
                                 ->keyBy('key')
-                                ->transform(function ($setting) {
-                                    $function   = array($setting, $setting::$types[$setting->type]);
-                                    $value      = array($setting->value);
-                                    return call_user_func_array($function, $value);
-                                })->toArray();
+                                ->transform(\Closure::fromCallable([$this, 'callMapping']))
+                                ->toArray();
         $array  =  array();
-
+        
         foreach($values as $key => $value)
         {
             Arr::set($array, $key, $value);
@@ -150,6 +184,59 @@ class SettingService
 
         return $array;
     }
+
+    /**
+     * calls the mapping function for the setting type
+     */
+    public function callMapping(Setting $setting)
+    {
+        $function   = array($this->mapper, $this->mapper::$types[$setting->type]);
+        $value      = array($setting->value);
+        return call_user_func_array($function, $value);
+    }
+
+    /**
+     * this handles storing the cached settings
+     * @param array $packable the array to commit to memory
+     * @return array
+     */
+    private function pack($packable = [])
+    {
+        $serialise = config('setting.storage.method', 'serialize') === static::$defaultStorageMethod;
+        $encrypt = config('setting.encrypt_file', false);
+        
+        if ($serialise || $encrypt)
+        {
+            return $this->storage->put($this->path, serialize($packable));
+        }
+
+        return $this->storage->put($this->path, '<?php return '.var_export($packable, true).';'.PHP_EOL);
+        
+    }
+
+    /**
+     * un-packs the settings from the storage disk, either serialised or not
+     * @return array
+     */
+    private function unPack() : array
+    {
+        $serialise = config('setting.storage.method', 'serialize') === static::$defaultStorageMethod;
+        $encrypt = config('setting.encrypt_file', false);
+        
+        $file = $this->storage->get($this->path);
+
+        if ($serialise || $encrypt)
+        {
+            $cached = unserialize($file);
+
+            if ($encrypt) $cached = decrypt($cached);
+
+            return collect($cached);
+        }
+
+        return eval(preg_replace('<?php ', '', $file));
+    }
+
     /**
      * transform all settings to JSON
      */

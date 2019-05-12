@@ -11,7 +11,7 @@ class SettingMapper extends Mapper implements MapperInterface
      * this is what is used to cast/map the setting from a string to the desired type
      * You can override the defaults of the JSON, STRING, BOOL from here too
      */
-    static $types = [
+    static $mappings = [
         // 'TYPE'    => 'funcName',
         // 'STRING'    => 'transformString',
         // 'JSON'      => 'transformJson',

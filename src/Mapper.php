@@ -11,10 +11,13 @@ class Mapper implements MapperInterface {
         'JSON'      => 'transformJson',
         'BOOL'      => 'transformBool'
     ];
-
+    
     public function __construct()
     {
-        static::$types[] = parent::$types;
+        if (property_exists($this, 'mappings'))
+        {
+            static::$types = array_merge(static::$types, static::$mappings);
+        }
     }
     
     public function transformString($value = null) : string

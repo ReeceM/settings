@@ -231,7 +231,7 @@ class SettingService
 
             if ($encrypt) $cached = decrypt($cached);
 
-            return collect($cached);
+            return $cached;
         }
 
         return eval(preg_replace('<?php ', '', $file));

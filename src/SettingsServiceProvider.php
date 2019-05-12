@@ -100,7 +100,7 @@ class SettingsServiceProvider extends ServiceProvider
     {
         $routeConfig = [
             'namespace'     => '\ReeceM\Settings\Http\Controllers',
-            'middleware'    => config('setting.middleware'),
+            'middleware'    => config('setting.middleware', ['web']),
             'prefix'        => config('setting.path')
         ];
 

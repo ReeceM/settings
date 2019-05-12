@@ -1,4 +1,10 @@
-# settings
+<h6 align="center">
+    <img src="https://github.com/ReeceM/SVG/blob/master/setting_logo.png" width="150"/>
+</h6>
+
+<h2 align="center">
+    settings
+</h2>
 Laravel Settings package that is persistent to DB
 
 This setting package makes use of the key-value storage method of settings.

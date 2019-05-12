@@ -17,6 +17,7 @@ class SettingController extends Controller
     public function index()
     {
         //
+        abort_unless(Gate::check('settings.admin', request()->user()), 403);
         $paginator = Setting::paginate(15);
         return view('settings::index', compact('paginator'));
     }

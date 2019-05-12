@@ -96,7 +96,7 @@
             .then((willDelete) => {
                 if (willDelete) {
                     // delete the setting that is now been confirmed
-                    axios.delete('/system/settings/' + _setting.id).then(response => {
+                    $settings.axios.delete('/system/settings/' + _setting.id).then(response => {
                         if(response.status == 200) {
                             swal(`Poof! Your Setting\n ${_setting.key} \n has been deleted!`, { icon: "success" }).then(r => {location.reload()});
                         }

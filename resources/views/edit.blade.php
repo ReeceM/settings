@@ -128,9 +128,9 @@
             .then((willDelete) => {
                 if (willDelete) {
                     // delete the setting that is now been confirmed
-                    axios.delete('/settings/' + _setting.id).then(response => {
+                    $settings.axios.delete('/settings/' + _setting.id).then(response => {
                         if(response.status == 200) {
-                            swal(`Poof! Your Setting\n ${_setting.key} \n has been deleted!`, { icon: "success" }).$setting
+                            swal(`Poof! Your Setting\n ${_setting.key} \n has been deleted!`, { icon: "success" })
                             .then(r => {
                                 location.href = "{{ route('settings.index') }}"
                             });
@@ -144,7 +144,7 @@
     </script>
         <!-- use -->
     <script>
-        Vue.component('vue-prism-editor', VuePrismEditor)
+        $settings.Vue.component('vue-prism-editor', VuePrismEditor)
 
         let settingType = {
             init: "{{$setting->type}}",
@@ -165,7 +165,7 @@
             settingType.type = document.getElementById('type').value
         }
 
-        Vue.component('json-editor', {
+        $settings.Vue.component('json-editor', {
             data() {
                 return {
                     code: @json($setting->value),

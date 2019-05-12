@@ -12,9 +12,16 @@ return [
     |   
     */
     'storage' => [
-        'table' => 'app_settings'
+        'table' => 'app_settings',
+        'disk'  => env('SETTINGS_DISK', 'local'),
     ],
 
+    /*
+    |   add your custom types to this definition and the methods will be auto-detected
+    */
+    'types' => [
+        
+    ],
     /* 
     |   Applications middleware for the settings channels
     |

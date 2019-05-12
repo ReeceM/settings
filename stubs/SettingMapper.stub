@@ -1,0 +1,31 @@
+<?php 
+
+namespace App\Settings;
+
+use ReeceM\Settings\Mapper;
+use ReeceM\Settings\Contracts\MapperInterface;
+
+class SettingMapper extends Mapper implements MapperInterface 
+{
+    /**
+     * this is what is used to cast/map the setting from a string to the desired type
+     * You can override the defaults of the JSON, STRING, BOOL from here too
+     */
+    static $types = [
+        // 'TYPE'    => 'funcName',
+        // 'STRING'    => 'transformString',
+        // 'JSON'      => 'transformJson',
+        // 'BOOL'      => 'transformBool'
+    ];
+
+    /**
+     * This is the default idea of the casting function and it accepts only one argument
+     * @param string $value 
+     * @return mixed
+     */
+    // public function funcName($value = null)
+    // {
+    //     if (is_null($value)) return 'default';
+    //     return $value;
+    // }
+}

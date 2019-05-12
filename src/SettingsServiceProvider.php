@@ -38,7 +38,15 @@ class SettingsServiceProvider extends ServiceProvider
 
         // load the settings Class
         $this->app->singleton('reecem.settings', function () {
-            return new \ReeceM\Settings\Services\SettingService();
+
+            $mapper = '\ReeceM\Settings\Mapper';
+
+            if (class_exists('\App\Settings\SettingMapper'))
+            {
+                $mapper = '\App\Settings\SettingMapper';
+            }   
+
+            return new \ReeceM\Settings\Services\SettingService(new $mapper());
         });
     }
 
@@ -136,6 +144,12 @@ class SettingsServiceProvider extends ServiceProvider
             //         'Providers/SettingsServiceProvider.php'
             //     ),
             // ], 'settings_provider');
+
+            $this->publishes([
+                __DIR__ . '/../stubs/SettingMapper.stub' => app_path(
+                    'Settings/SettingMapper.php'
+                ),
+            ], 'settings_mapper');
         }
     }
 }

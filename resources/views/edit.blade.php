@@ -192,7 +192,7 @@
             },
         })
         
-        new Vue({
+        new $settings.Vue({
             el: '#editor',
         })
     </script>

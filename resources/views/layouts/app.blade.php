@@ -18,12 +18,17 @@
         <script src="https://unpkg.com/vue-prism-editor"></script>
         <!-- vue-prism-editor CSS -->
         <link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/VuePrismEditor.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     </head>
     <body>
+        
+        @includeWhen(session('settings.flash'), 'settings::partials.flash')
+
         @stack('pre-vue')
         <div id="app" class="container">
             @yield('content')
         </div>
+        
         <!-- Scripts -->
         <script src="{{ mix('js/app.js', 'vendor/settings') }}"></script>
         @stack('scripts')

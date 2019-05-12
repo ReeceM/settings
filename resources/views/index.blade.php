@@ -4,7 +4,7 @@
 
 @section('content')
     <section class="section">
-        <div class="container is-fluid">
+        <div class="container">
             <div class="columns is-centered">
                 <div class="column box" style="overflow-x: scroll">
                     <nav class="level is-mobile">
@@ -14,7 +14,7 @@
                             </div>
                             <div class="level-item">
                                 <a href="{{ route('settings.refresh') }}" class="md-button is-link is-small">
-                                    <b-icon size="is-small" icon="refresh"></b-icon>
+                                    <span class="icon is-small"><i class="fa fa-sync"></i></span>
                                 </a>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                                 <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->id) }}">View</a>
                                             </p>
                                             <p class="control">
-                                                <button class="md-button is-danger is-small" ondblclick="deleteSetting({{$setting}})">Delete</button>
+                                                <button class="md-button is-danger is-small" onclick="deleteSetting({{$setting}})">Delete</button>
                                             </p>
                                         </div>
                                     </td>

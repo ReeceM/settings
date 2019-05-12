@@ -1,7 +1,7 @@
 {
     "name": "reecem/settings",
     "type": "package",
-    "description": "YASP A settings package that uses a property bag and caching",
+    "description": "settings package that uses a property bag and caching",
     "require": {
         "illuminate/support": "^5.6",
         "illuminate/filesystem": "^5.6"
@@ -40,7 +40,8 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-clover coverage"
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
+        "style": "phpcs --standard=PSR2 --extensions=php --colors src"
     },
     "extra": {
         "laravel": {

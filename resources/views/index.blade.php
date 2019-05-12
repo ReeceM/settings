@@ -110,8 +110,3 @@
         }
     </script>
 @endpush
-@push('pre-vue')
-<link rel="stylesheet" href="{{ asset('css/prisim.css') }}">
-<script src="{{ asset('/js/prisim.js') }}"></script>
-
-@endpush

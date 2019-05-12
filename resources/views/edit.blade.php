@@ -1,13 +1,5 @@
 @extends('settings::layouts.app') 
 @section('title', __(config('app.name') . ' < Create Settings'))
-@push('pre-vue')
-<!-- vue-prism-editor JavaScript -->
-<script src="https://unpkg.com/vue-prism-editor"></script>
-<!-- vue-prism-editor CSS -->
-<link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/VuePrismEditor.css">
-
-@endpush
-
 
 @section('content')
     <section class="section">

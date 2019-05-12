@@ -7,12 +7,17 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        {{-- Page title --}}
         <title>@yield('title')</title>
+
         <link rel="stylesheet" href="{{ mix('css/prisim.css', 'vendor/settings') }}">
         <script src="{{ mix('js/prisim.js', 'vendor/settings') }}"></script>
         <!-- Styles -->
         <link href="{{ mix('css/app.css', 'vendor/settings') }}" rel="stylesheet">
+                <!-- vue-prism-editor JavaScript -->
+        <script src="https://unpkg.com/vue-prism-editor"></script>
+        <!-- vue-prism-editor CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/vue-prism-editor/dist/VuePrismEditor.css">
     </head>
     <body>
         @stack('pre-vue')

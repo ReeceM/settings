@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class SettingRule implements Rule
 {
+    private $defaultRegex = '(JSON)|(STRING)|(BOOL)';
     /**
      * Create a new rule instance.
      *
@@ -14,6 +15,10 @@ class SettingRule implements Rule
     public function __construct()
     {
         //
+        /**
+         * Add in the users types to the rules regex for checking
+         */
+        $this->defaultRegex .= '|(' . implode(')|(', config('setting.types')) . ')';
     }
 
     /**
@@ -26,7 +31,7 @@ class SettingRule implements Rule
     public function passes($attribute, $value)
     {
         $matches = array();
-        preg_match('/(JSON)|(STRING)|(BOOL)/', $value, $matches);
+        preg_match('/' . $this->defaultRegex . '/', $value, $matches);
         
         if (count($matches) <= 0)  {
             return false;

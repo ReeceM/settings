@@ -207,7 +207,9 @@ class SettingService
         
         if ($serialise || $encrypt)
         {
-            return $this->storage->put($this->path, serialize($packable));
+            $packable = serialize($packable);
+            if ($encrypt) $packable = encrypt($packable);
+            return $this->storage->put($this->path, $packable);
         }
 
         return $this->storage->put($this->path, '<?php return '.var_export($packable, true).';'.PHP_EOL);

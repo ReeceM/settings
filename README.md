@@ -18,7 +18,8 @@ This setting package makes use of the key-value storage method of settings.
 
 ## todo
 There is always something todo
-
+- [ ] add an encrypt option to individual settings
+- [ ] improve the ui of the settings panel
 
 ## Support
 If you enjoy using the package you can support me on Ko-Fi or by paypal :smile:

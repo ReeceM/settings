@@ -5,7 +5,22 @@
 <h2 align="center">
     settings
 </h2>
+
 Laravel Settings package that is persistent to DB
+<p align="center"> 
+    <a href="https://packagist.org/packages/reecem/settings" target="_blank">
+        <img class="latest_stable_version_img" src="/reecem/settings/version">
+    </a>
+    <a href="https://packagist.org/packages/reecem/settings" target="_blank">
+        <img class="total_img" src="/reecem/settings/downloads">
+    </a>
+    <a href="https://packagist.org/packages/reecem/settings" target="_blank">
+        <img class="latest_unstable_version_img" src="/reecem/settings/v/unstable">
+    </a>
+    <a href="https://packagist.org/packages/reecem/settings" target="_blank">
+        <img class="license_img" src="/reecem/settings/license">
+    </a>
+</p>
 
 This setting package makes use of the key-value storage method of settings.
 

@@ -22,6 +22,22 @@ Laravel Settings package that is persistent to DB
 </p>
 This setting package makes use of the key-value storage method of settings.
 
+## Installing 
+
+Require via composer
+
+```bash
+composer require reecem/settings
+```
+
+Then install through the artisan command
+
+```bash
+php artisan settings:install
+```
+- this will publish all the needed assets and setting configs
+    - you will be prompted if you want to change the tables name for the settings or leave it default
+
 ## Features
 - Settings are cached to reduce reading time from the db
 - `setting()` helper to access the settings from anywhere

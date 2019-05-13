@@ -23,7 +23,7 @@
             "homepage": "https://githib.com/reecem"
         }
     ],
-    "homepage": "https://github.com/reecem/settings",
+    "homepage": "https://reecem.github.io/settings/",
     "autoload": {
         "psr-4": {
             "ReeceM\\Settings\\": "./src"

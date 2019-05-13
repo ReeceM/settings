@@ -1,6 +1,5 @@
 {
     "name": "reecem/settings",
-    "type": "package",
     "description": "settings package that uses a property bag and caching",
     "require": {
         "illuminate/support": "^5.6",

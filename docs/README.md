@@ -1,5 +1,5 @@
 <h6 align="center">
-    <img src="https://github.com/ReeceM/SVG/blob/master/setting_logo.png" width="150"/>
+    <img src="https://live.staticflickr.com/65535/47047471134_cb3c38e55a_o.png" width="150"/>
 </h6>
 
 <h2 align="center">

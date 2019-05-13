@@ -9,19 +9,18 @@
 Laravel Settings package that is persistent to DB
 <p align="center"> 
     <a href="https://packagist.org/packages/reecem/settings" target="_blank">
-        <img class="latest_stable_version_img" src="/reecem/settings/version">
+        <img class="latest_stable_version_img" src="https://poser.pugx.org/reecem/settings/version">
     </a>
     <a href="https://packagist.org/packages/reecem/settings" target="_blank">
-        <img class="total_img" src="/reecem/settings/downloads">
+        <img class="total_img" src="https://poser.pugx.org/reecem/settings/downloads">
     </a>
     <a href="https://packagist.org/packages/reecem/settings" target="_blank">
-        <img class="latest_unstable_version_img" src="/reecem/settings/v/unstable">
+        <img class="latest_unstable_version_img" src="https://poser.pugx.org/reecem/settings/v/unstable">
     </a>
     <a href="https://packagist.org/packages/reecem/settings" target="_blank">
-        <img class="license_img" src="/reecem/settings/license">
+        <img class="license_img" src="https://poser.pugx.org/reecem/settings/license">
     </a>
 </p>
-
 This setting package makes use of the key-value storage method of settings.
 
 ## Features

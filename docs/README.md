@@ -38,6 +38,13 @@ php artisan settings:install
 - this will publish all the needed assets and setting configs
     - you will be prompted if you want to change the tables name for the settings or leave it default
 
+## updates 
+
+when there is a new release please run `settings:update` just to refresh the published assets
+```bash
+php artisan settings:update
+```
+
 ## Features
 - Settings are cached to reduce reading time from the db
 - `setting()` helper to access the settings from anywhere

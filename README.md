@@ -35,6 +35,13 @@ Then install through the artisan command
 php artisan settings:install
 ```
 
+## updates 
+
+when there is a new release please run `settings:update` just to refresh the published assets
+```bash
+php artisan settings:update
+```
+
 ## Features
 - Settings are cached to reduce reading time from the db
 - `setting()` helper to access the settings from anywhere

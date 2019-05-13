@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use ReeceM\Settings\Console\SettingsInstall;
+use ReeceM\Settings\Console\SettingsUpdate;
 
 class SettingsServiceProvider extends ServiceProvider
 {
@@ -114,6 +115,7 @@ class SettingsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 SettingsInstall::class,
+                SettingsUpdate::class
                 // other commands for cleaning and such ??
             ]);
         }

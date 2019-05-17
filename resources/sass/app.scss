@@ -2,7 +2,11 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito:300,400);
 // Variables
 @import "bulma.sass";
+@import "../../node_modules/tailwindcss/base";
 
+@import "../../node_modules/tailwindcss/components";
+
+@import "../../node_modules/tailwindcss/utilities";
 //Custom 
 @import "custom.sass";
 // @import "buefy.sass";

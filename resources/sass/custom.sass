@@ -171,3 +171,72 @@
 		border-radius: $radius-rounded
 		padding-left: 1em
 		padding-right: 1em
+
+
+nav.pagination
+	& ul.pagination-list
+		@apply inline-flex
+		& .pagination-previous
+			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l
+			&:hover
+				@apply bg-gray-400
+		& .pagination-next
+			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r
+			&:hover
+				@apply bg-gray-400
+		& li .pagination-ellipsis
+			@apply bg-gray-300 text-gray-800 font-bold py-2 px-4
+			&:hover
+				@apply bg-gray-400
+		& li>a.pagination-link
+			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4
+			&.is-current
+				@apply cursor-pointer bg-blue-300 text-gray-800 font-bold py-2 px-4
+.pagination 
+	//config.wrapper,
+	@apply flex justify-center mb-5 mt-5 p-0
+	& .page-item 
+		// @apply border
+		&:hover 
+			//config.itemHover,
+		& .page-link 
+			@apply border block px-4 py-1 bg-white cursor-pointer
+		& .page-link:hover 
+			@apply shadow bg-gray-200
+		&:first-child .page-link 
+			@apply rounded-l rounded-sm
+		&:first-child .page-link:hover 
+			@apply shadow bg-gray-200
+		&:nth-child(2) .page-link 
+			@apply border block px-4 py-1 bg-white cursor-pointer
+		&:nth-child(2) .page-link:hover 
+			@apply shadow bg-gray-200
+		&:nth-last-child(2) .page-link 
+			@apply border block px-4 py-1 bg-white cursor-pointer
+		&:nth-last-child(2) .page-link:hover 
+			@apply shadow bg-gray-200
+		&:last-child .page-link 
+			@apply rounded-r rounded-sm
+		&:last-child .page-link:hover 
+			@apply shadow bg-gray-200
+		&.active .page-link 
+			@apply bg-blue-500 text-blue-100 border-2 border-blue-400
+		&.active .page-link:hover 
+			@apply shadow bg-blue-700 text-blue-200
+		&.disabled .page-link 
+			@apply bg-gray-200 cursor-not-allowed
+		&.disabled .page-link:hover 
+			@apply bg-gray-200 cursor-not-allowed shadow-none
+
+.badge
+	@apply rounded bg-gray-600 text-gray-100 px-2 py-1 text-xs font-thin
+	&.is-success
+		@apply rounded bg-green-600 text-black px-2 py-1 text-xs font-thin
+	&.is-danger
+		@apply rounded bg-red-600 text-red-100 px-2 py-1 text-xs font-thin
+	&.is-warning
+		background-color: $yellow
+		color: #544300
+		@apply rounded px-2 py-1 text-xs font-thin
+	&.is-info
+		@apply rounded bg-blue-600 text-blue-100 px-2 py-1 text-xs font-thin

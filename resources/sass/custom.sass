@@ -172,26 +172,6 @@
 		padding-left: 1em
 		padding-right: 1em
 
-
-nav.pagination
-	& ul.pagination-list
-		@apply inline-flex
-		& .pagination-previous
-			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-l
-			&:hover
-				@apply bg-gray-400
-		& .pagination-next
-			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-r
-			&:hover
-				@apply bg-gray-400
-		& li .pagination-ellipsis
-			@apply bg-gray-300 text-gray-800 font-bold py-2 px-4
-			&:hover
-				@apply bg-gray-400
-		& li>a.pagination-link
-			@apply cursor-pointer bg-gray-300 text-gray-800 font-bold py-2 px-4
-			&.is-current
-				@apply cursor-pointer bg-blue-300 text-gray-800 font-bold py-2 px-4
 .pagination 
 	//config.wrapper,
 	@apply flex justify-center mb-5 mt-5 p-0
@@ -229,9 +209,9 @@ nav.pagination
 			@apply bg-gray-200 cursor-not-allowed shadow-none
 
 .badge
-	@apply rounded bg-gray-600 text-gray-100 px-2 py-1 text-xs font-thin
+	@apply inline-flex justify-center items-center flex-wrap rounded bg-gray-600 text-gray-100 px-2 py-2 text-xs font-thin
 	&.is-success
-		@apply rounded bg-green-600 text-black px-2 py-1 text-xs font-thin
+		@apply rounded bg-green-600 text-green-100 px-2 py-1 text-xs font-thin
 	&.is-danger
 		@apply rounded bg-red-600 text-red-100 px-2 py-1 text-xs font-thin
 	&.is-warning

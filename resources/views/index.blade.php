@@ -3,12 +3,12 @@
 @section('title', __(config('app.name') . ' < System Settings '))
 
 @section('content')
-    <section class="section">
-        <div class="container">
-            <div class="columns is-centered">
-                <div class="column box" style="overflow-x: scroll">
+    <section class="flex p-24">
+        <div class="container mx-auto">
+            <div class="flex justify-center">
+                <div class="rounded shadow w-full sm:p-4 lg:p-12 md:p-6 bg-white" style="overflow-x: scroll">
                     <nav class="level is-mobile">
-                        <div class="level-left">
+                        <div class="flex justify-between">
                             <div class="level-item">
                                 <a href="{{ route('settings.create') }}" class="md-button is-info is-small">New Setting</a>
                             </div>
@@ -24,11 +24,11 @@
                             </div>
                         </div>
                     </nav>
-                    <hr>
-                    @if($paginator)
-                        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <hr class="border-2 border-indigo-100 mb-5">
+                    @if($paginator->count() > 0)
+                        <table class="table w-full">
                             <thead>
-                                <tr>
+                                <tr class="table-row border-b-2 border-blue-200">
                                     <th>Key</th>
                                     <th>Value</th>
                                     <th>Type</th>
@@ -37,26 +37,26 @@
                             </thead>
                             <tbody>
                                 @foreach($paginator as $setting)
-                                <tr>
-                                    <td>
+                                <tr class="table-row hover:bg-gray-200 border-b-2 border-gray-300 {{ $loop->odd ? 'bg-white' : 'bg-gray-100' }}">
+                                    <td class="table-cell py-3 px-3 text-center">
                                         {{ $setting->key }}
                                     </td>
-                                    <td >
+                                    <td class="table-cell py-3 px-3 text-center">
                                         @if ($setting->type == 'JSON')
                                             <pre><code class="language-json" id="value" name="value">{{ json_encode(json_decode($setting->value), JSON_PRETTY_PRINT) }}</code></pre>
                                         @else
                                             <pre>{{ $setting->value }}</pre>
                                         @endif
                                     </td>
-                                    <td class="has-text-centered">
-                                        <span class="tag {{ setting('setting.color.' . $setting->type, 'is-link') }}">{{ $setting->type }}</span>
+                                    <td class="table-cell py-3 px-3 text-center">
+                                        <span class="badge is-info">{{ $setting->type }}</span>
                                     </td>
-                                    <td>
-                                        <div class="field is-grouped is-grouped-centered">
-                                            <p class="control">
+                                    <td class="table-cell py-3 px-3 text-center">
+                                        <div class="flex inline-flex justify-center">
+                                            <p class="flex pr-3">
                                                 <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->id) }}">View</a>
                                             </p>
-                                            <p class="control">
+                                            <p class="flex">
                                                 <button class="md-button is-danger is-small" onclick="deleteSetting({{$setting}})">Delete</button>
                                             </p>
                                         </div>
@@ -68,13 +68,20 @@
                     @if ($paginator->hasPages())
                         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                             {{-- Previous Page Link --}}
-                            {{$paginator->links("settings::partials.pagin")}}
+                            {{$paginator->links("pagination::bootstrap-4")}}
                         </nav>
                     @endif
                     @else
-                    <div class="column">
-                        <div class="message is-info">
-                            <p class="message-body">No Settings ....</p>
+                    <div class="flex mx-auto w-full justify-center">
+                        <div class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
+                            <div class="flex">
+                                <div class="py-1"><svg class="fill-current h-6 w-6 text-blue-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+                                <div>
+                                    <p class="font-bold">You have no settings.</p>
+                                    <p class="text-sm">Use the new setting button to add one.</p>
+                                    <p clas=""><a href="{{ route('settings.create') }}" class="md-button is-info is-small">New Setting</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @endif

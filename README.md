@@ -51,7 +51,7 @@ php artisan settings:update
 
 ## todo
 There is always something todo
-- [ ] add an encrypt option to individual settings
+- [x] add an encrypt option to individual settings
 - [ ] improve the ui of the settings panel
 - [ ] unit tests...
 

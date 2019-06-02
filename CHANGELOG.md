@@ -1,3 +1,6 @@
+## 0.3.0 - 02.06.19
+- added tailwind to the package
+
 ## v0.2.0 - 03.05.19
 - initial version as package
 

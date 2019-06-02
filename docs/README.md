@@ -2,7 +2,7 @@
     <img src="https://live.staticflickr.com/65535/47047471134_cb3c38e55a_o.png" width="150"/>
 </h6>
 
-<h2 align="center">
+<h2 align="center" id="settings">
     settings
 </h2>
 Laravel Settings package that is persistent to DB
@@ -54,7 +54,7 @@ php artisan settings:update
 
 ## todo
 There is always something todo
-- [ ] add an encrypt option to individual settings
+- [x] add an encrypt option to individual settings
 - [ ] improve the ui of the settings panel
 - [ ] unit tests...
 

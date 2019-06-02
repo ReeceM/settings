@@ -54,7 +54,7 @@
                                     <td class="table-cell py-3 px-3 text-center">
                                         <div class="flex inline-flex justify-center">
                                             <p class="flex pr-3">
-                                                <button class="md-button is-info is-small" href="{{ route('settings.show', $setting->id) }}">View</button>
+                                                <a class="md-button is-info is-small" href="{{ route('settings.show', $setting->id) }}">View</a>
                                             </p>
                                             <p class="flex">
                                                 <button class="md-button is-danger is-small" onclick="deleteSetting({{$setting}})">Delete</button>

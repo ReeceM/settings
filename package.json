@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.8"
     },
     "dependencies": {
+        "@fullhuman/postcss-purgecss": "^1.2.0",
         "axios-progress-bar": "^1.2.0",
         "babel-polyfill": "^6.26.0",
         "buefy": "^0.7.3",

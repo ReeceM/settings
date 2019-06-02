@@ -23,12 +23,12 @@ $colors = [
     'link' => 'bg-blue-100 text-blue-700 border-blue-500',
 ];
 @endphp
-<section style="z-50 fixed right-0 mt-10 mr-10">
+<section class="z-50 fixed right-0 mt-10 mr-10">
     <div class="flex flex-col" >
         @foreach(session('settings.flash') as $key => $notice)
-        <div class="flex pb-4">
-            <div class="flash {{ Arr::get([$colors], $key) }} border-l-4 p-4 shadow-lg cursor-pointer animated fadeInDown" role="alert"  onclick="this.remove()">
-                <svg class="float-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+        <div class="flex pb-4 w-40">
+            <div class="flash {{ Arr::get($colors, $key) }} border-l-4 p-4 shadow-lg break-words animated fadeInDown" role="alert">
+                <svg onclick="this.parentElement.remove()" class="float-right  cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
                 <p class="font-bold">{{ ucwords($key) }}</p>
                 <p>{{ $notice }}</p>
             </div>

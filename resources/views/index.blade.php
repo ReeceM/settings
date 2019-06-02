@@ -25,7 +25,7 @@
                         </div>
                     </nav>
                     <hr class="border-2 border-indigo-100 mb-5">
-                    @if($paginator)
+                    @if($paginator->count() > 0)
                         <table class="table w-full">
                             <thead>
                                 <tr class="table-row border-b-2 border-blue-200">

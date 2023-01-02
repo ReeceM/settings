@@ -28,7 +28,7 @@
         "axios-progress-bar": "^1.2.0",
         "babel-polyfill": "^6.26.0",
         "buefy": "^0.7.7",
-        "moment": "^2.24.0",
+        "moment": "^2.29.4",
         "node-sass": "^4.13.1",
         "sweetalert": "^2.1.2"
     }
